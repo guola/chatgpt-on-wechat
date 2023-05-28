@@ -117,6 +117,7 @@ class ChatChannel(Channel):
             else:  # 单聊
                 match_prefix = check_prefix(content, conf().get("single_chat_prefix", [""]))
                 match_prefix_triple_spaces = check_prefix(content, "   ") # 判断如果匹配到三个空白符，则是人工的回复不调用openai
+                logger.info("match_prefix_triple_spaces = [%s], match_prefix=[%s]",match_prefix_triple_spaces,match_prefix)
                 if match_prefix_triple_spaces is not None:
                     logger.info("[WX]match_prefix_triple_spaces = [%s]",match_prefix_triple_spaces)
                     return None
