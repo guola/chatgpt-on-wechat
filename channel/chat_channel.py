@@ -116,6 +116,11 @@ class ChatChannel(Channel):
                     return None
             else:  # 单聊
                 match_prefix = check_prefix(content, conf().get("single_chat_prefix", [""]))
+                match_prefix_triple_spaces = check_prefix(content, "   ") # 判断如果匹配到三个空白符，则是人工的回复不调用openai
+                if match_prefix_triple_spaces is not None:
+                    logger.debug("[WX]match_prefix_triple_spaces = %s",match_prefix_triple_spaces)
+                    return None
+
                 if match_prefix is not None:  # 判断如果匹配到自定义前缀，则返回过滤掉前缀+空格后的内容
                     content = content.replace(match_prefix, "", 1).strip()
                 elif context["origin_ctype"] == ContextType.VOICE:  # 如果源消息是私聊的语音消息，允许不匹配前缀，放宽条件
