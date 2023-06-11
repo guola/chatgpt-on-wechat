@@ -13,15 +13,3 @@ plugins.json
 itchat.pkl
 *.log
 user_datas.pkl
-chatgpt_tool_hub/
-plugins/**/
-!plugins/bdunit
-!plugins/dungeon
-!plugins/finish
-!plugins/godcmd
-!plugins/tool
-!plugins/banwords
-!plugins/banwords/**/
-!plugins/hello
-!plugins/role
-!plugins/keyword
