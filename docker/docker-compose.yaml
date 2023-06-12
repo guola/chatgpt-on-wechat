@@ -4,11 +4,12 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.alpine
-    image: zhayujie/chatgpt-on-wechat
+    image: guola/chatgpt-on-wechat
     container_name: sample-chatgpt-on-wechat
     environment:
       OPEN_AI_API_KEY: 'YOUR API KEY'
       OPEN_AI_PROXY: ''
+      SINGLE_HUMAN_PREFIX: '["human", "@human"]'
       SINGLE_CHAT_PREFIX: '["bot", "@bot"]'
       SINGLE_CHAT_REPLY_PREFIX: '"[bot] "'
       GROUP_CHAT_PREFIX: '["@bot"]'

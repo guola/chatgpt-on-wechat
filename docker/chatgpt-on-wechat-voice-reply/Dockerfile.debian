@@ -1,4 +1,4 @@
-FROM zhayujie/chatgpt-on-wechat:debian
+FROM guola/chatgpt-on-wechat:debian
 
 LABEL maintainer="foo@bar.com"
 ARG TZ='Asia/Shanghai'
