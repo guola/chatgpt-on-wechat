@@ -2,6 +2,7 @@
   "open_ai_api_key": "YOUR API KEY",
   "model": "gpt-3.5-turbo",
   "proxy": "",
+  "single_human_prefix": ["---", "   "],
   "single_chat_prefix": [
     "bot",
     "@bot"
