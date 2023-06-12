@@ -1,3 +1,3 @@
-FROM ghcr.io/guola/repo:feature-channel
+FROM ghcr.io/guola/chatgpt-on-wechat:latest
 
 ENTRYPOINT ["/entrypoint.sh"]
