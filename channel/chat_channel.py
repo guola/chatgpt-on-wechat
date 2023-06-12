@@ -116,7 +116,7 @@ class ChatChannel(Channel):
                     return None
             else:  # 单聊
                 match_prefix = check_prefix(content, conf().get("single_chat_prefix", [""]))
-                match_prefix_human_chat = check_prefix(content, conf().get("single_human_chat_prefix")) # 判断如果匹配到三个空白符，则是人工的回复不调用openai
+                match_prefix_human_chat = check_prefix(content, conf().get("single_human_prefix")) # 判断如果匹配到三个空白符，则是人工的回复不调用openai
                 logger.info("match_prefix_human_chat = [%s], match_prefix=[%s]",match_prefix_human_chat,match_prefix)
                 if match_prefix_human_chat is not None:
                     logger.info("[WX]match_prefix_human_chat = [%s]", match_prefix_human_chat)
