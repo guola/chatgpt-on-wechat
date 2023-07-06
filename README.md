@@ -26,11 +26,13 @@ Demo made by [Visionn](https://www.wangpc.cc/)
 
 # 交流群
 
-添加小助手微信进群：
+添加小助手微信进群，请备注 "wechat"：
 
 <img width="240" src="./docs/images/contact.jpg">
 
 # 更新日志
+
+>**2023.06.12：** 接入 [LinkAI](https://chat.link-ai.tech/console) 平台，可在线创建 个人知识库，并接入微信中。Beta版本欢迎体验，使用参考 [接入文档](https://link-ai.tech/platform/link-app/wechat)。
 
 >**2023.04.26：** 支持企业微信应用号部署，兼容插件，并支持语音图片交互，私人助理理想选择，[使用文档](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/channel/wechatcom/README.md)。(contributed by [@lanvent](https://github.com/lanvent) in [#944](https://github.com/zhayujie/chatgpt-on-wechat/pull/944))
 
@@ -60,6 +62,8 @@ Demo made by [Visionn](https://www.wangpc.cc/)
 
 支持 Linux、MacOS、Windows 系统（可在Linux服务器上长期运行)，同时需安装 `Python`。
 > 建议Python版本在 3.7.1~3.9.X 之间，推荐3.8版本，3.10及以上版本在 MacOS 可用，其他系统上不确定能否正常运行。
+
+> 注意：Docker 或 Railway 部署无需安装python环境和下载源码，可直接快进到下一节。
 
 **(1) 克隆项目代码：**
 
@@ -194,11 +198,44 @@ nohup python3 app.py & tail -f nohup.out          # 在后台运行程序并通�
 
 ### 3.Docker部署
 
-参考文档 [Docker部署](https://github.com/limccn/chatgpt-on-wechat/wiki/Docker%E9%83%A8%E7%BD%B2)   (Contributed by [limccn](https://github.com/limccn))。
+> 使用docker部署无需下载源码和安装依赖，只需要获取 docker-compose.yml 配置文件并启动容器即可。
 
-### 4. Railway部署 (✅推荐)
+> 前提是需要安装好 `docker` 及 `docker-compose`，安装成功的表现是执行 `docker -v` 和 `docker-compose version` (或 docker compose version) 可以查看到版本号，可前往 [docker官网](https://docs.docker.com/engine/install/) 进行下载。
+
+#### (1) 下载 docker-compose.yml 文件
+
+```bash
+wget https://open-1317903499.cos.ap-guangzhou.myqcloud.com/docker-compose.yml
+```
+
+下载完成后打开 `docker-compose.yml` 修改所需配置，如 `OPEN_AI_API_KEY` 和 `GROUP_NAME_WHITE_LIST` 等。
+
+#### (2) 启动容器
+
+在 `docker-compose.yml` 所在目录下执行以下命令启动容器：
+
+```bash
+sudo docker compose up -d
+```
+
+运行 `sudo docker ps` 能查看到 NAMES 为 chatgpt-on-wechat 的容器即表示运行成功。
+
+注意：
+
+ - 如果 `docker-compose` 是 1.X 版本 则需要执行 `sudo  docker-compose up -d` 来启动容器
+ - 该命令会自动去 [docker hub](https://hub.docker.com/r/zhayujie/chatgpt-on-wechat) 拉取 latest 版本的镜像，latest 镜像会在每次项目 release 新的版本时生成
+
+最后运行以下命令可查看容器运行日志，扫描日志中的二维码即可完成登录：
+
+```bash
+sudo docker logs -f chatgpt-on-wechat
+```
+
+### 4. Railway部署
+
 > Railway每月提供5刀和最多500小时的免费额度。
-1. 进入 [Railway](https://railway.app/template/qApznZ?referralCode=RC3znh)。
+
+1. 进入 [Railway](https://railway.app/template/qApznZ?referralCode=RC3znh)
 2. 点击 `Deploy Now` 按钮。
 3. 设置环境变量来重载程序运行的参数，例如`open_ai_api_key`, `character_desc`。
 
@@ -206,6 +243,7 @@ nohup python3 app.py & tail -f nohup.out          # 在后台运行程序并通�
 
 FAQs： <https://github.com/zhayujie/chatgpt-on-wechat/wiki/FAQs>
 
+或直接在线咨询 [项目小助手](https://chat.link-ai.tech/app/Kv2fXJcH)  (beta版本，语料完善中，回复仅供参考)
 
 ## 联系
 
